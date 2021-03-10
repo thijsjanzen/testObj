@@ -1,0 +1,4 @@
+useDynLib(testObj, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+export(predict_val)
+exportPattern("^[[:alpha:]]+")
