@@ -4,3 +4,10 @@ predict_val <- function(gam, pars) {
   out <- mgcv::predict.gam(gam, pars)
   return(as.vector(out))
 }
+
+predict_val_2 <- function(gam) {
+  function(pars) {
+    testit::assert(is.data.frame(pars))
+    mgcv::predict.gam(gam, pars)
+  }
+}

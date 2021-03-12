@@ -5,21 +5,46 @@
 
 using namespace Rcpp;
 
-// predict_cpp
-NumericVector predict_cpp(const List& gam_obj, const NumericVector& pars);
-RcppExport SEXP _testObj_predict_cpp(SEXP gam_objSEXP, SEXP parsSEXP) {
+// predict_cpp_with_gam_obj
+NumericVector predict_cpp_with_gam_obj(const List& gam_obj, const NumericVector& pars);
+RcppExport SEXP _testObj_predict_cpp_with_gam_obj(SEXP gam_objSEXP, SEXP parsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const List& >::type gam_obj(gam_objSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type pars(parsSEXP);
-    rcpp_result_gen = Rcpp::wrap(predict_cpp(gam_obj, pars));
+    rcpp_result_gen = Rcpp::wrap(predict_cpp_with_gam_obj(gam_obj, pars));
+    return rcpp_result_gen;
+END_RCPP
+}
+// predict_cpp_external_closure
+NumericVector predict_cpp_external_closure(const NumericVector& pars);
+RcppExport SEXP _testObj_predict_cpp_external_closure(SEXP parsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type pars(parsSEXP);
+    rcpp_result_gen = Rcpp::wrap(predict_cpp_external_closure(pars));
+    return rcpp_result_gen;
+END_RCPP
+}
+// predict_cpp_with_closure
+NumericVector predict_cpp_with_closure(const NumericVector& pars, const Function& f);
+RcppExport SEXP _testObj_predict_cpp_with_closure(SEXP parsSEXP, SEXP fSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type pars(parsSEXP);
+    Rcpp::traits::input_parameter< const Function& >::type f(fSEXP);
+    rcpp_result_gen = Rcpp::wrap(predict_cpp_with_closure(pars, f));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_testObj_predict_cpp", (DL_FUNC) &_testObj_predict_cpp, 2},
+    {"_testObj_predict_cpp_with_gam_obj", (DL_FUNC) &_testObj_predict_cpp_with_gam_obj, 2},
+    {"_testObj_predict_cpp_external_closure", (DL_FUNC) &_testObj_predict_cpp_external_closure, 1},
+    {"_testObj_predict_cpp_with_closure", (DL_FUNC) &_testObj_predict_cpp_with_closure, 2},
     {NULL, NULL, 0}
 };
 
