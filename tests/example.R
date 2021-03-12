@@ -44,11 +44,6 @@ predict_global <- function(pars) {
 predict_cpp_with_closure(pars, predict_global)[[1]]
 
 
-
-
-
-
-
 # all values should be the same (nice tidbit, I did not know you
 # could compare more than 2 values):
 all.equal(mgcv::predict.gam(b, newd)[[1]],
